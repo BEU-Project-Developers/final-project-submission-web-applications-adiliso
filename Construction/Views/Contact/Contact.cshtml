@@ -1,0 +1,68 @@
+﻿@model dynamic
+
+@{
+    ViewData["ActivePage"] = "Contact";
+    Layout = "_Layout";
+}
+
+<!-- Page Title -->
+<div class="page-title dark-background" style="background-image: url('@Url.Content("~/img/page-title-bg.jpg")');">
+    <div class="container position-relative">
+        <h1>Contact</h1>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="current">Contact</li>
+            </ol>
+        </nav>
+    </div>
+</div><!-- End Page Title -->
+
+<!-- Contact Section -->
+<section id="contact" class="contact section">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-6">
+                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
+                     data-aos-delay="200">
+                    <i class="bi bi-geo-alt"></i>
+                    <h3>Address</h3>
+                    <p>Xırdalan şəh, 120 AZ0101 Həsən Əliyev küç, Bakı</p>
+                </div>
+            </div><!-- End Info Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
+                     data-aos-delay="300">
+                    <i class="bi bi-telephone"></i>
+                    <h3>Call Us</h3>
+                    <p>+994 50 824 62 24</p>
+                </div>
+            </div><!-- End Info Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
+                     data-aos-delay="400">
+                    <i class="bi bi-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>ismayilovadi670@gmail.com</p>
+                </div>
+            </div><!-- End Info Item -->
+
+        </div>
+
+        <div class="row gy-4 mt-1">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d111155.45717595032!2d49.649073568373765!3d40.47612143133381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403085750a9f3d61%3A0x24e5c126412d760!2sBaku%20Engineering%20University!5e1!3m2!1sen!2saz!4v1746827206278!5m2!1sen!2saz"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div><!-- End Google Maps -->
+        </div>
+
+    </div>
+
+</section><!-- /Contact Section -->
