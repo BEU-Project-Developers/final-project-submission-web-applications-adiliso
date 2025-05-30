@@ -1067,32 +1067,34 @@ section,
 }
 
 .services .service-item .icon {
-  width: 48px;
-  height: 48px;
-  position: relative;
-  margin-bottom: 50px;
+  width: 80px; /* bigger than before */
+  height: 80px;
+  margin: 0 auto 20px auto; /* center and space it nicely */
+  background: var(--heading-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.services .service-item .icon i {
-  color: var(--heading-color);
-  font-size: 56px;
-  transition: ease-in-out 0.3s;
-  z-index: 2;
-  position: relative;
+.services .service-item .icon img.service-icon {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* makes the icon white, adjust as needed */
+  transition: transform 0.3s ease;
+}
+
+.services .service-item:hover .icon img.service-icon {
+  transform: scale(1.1);
 }
 
 .services .service-item .icon:before {
-  position: absolute;
-  content: "";
-  height: 100%;
-  width: 100%;
-  background: color-mix(in srgb, var(--heading-color), transparent 95%);
-  border-radius: 50px;
-  z-index: 1;
-  top: 10px;
-  right: -20px;
-  transition: 0.3s;
+  content: none; /* remove the pseudo background overlay */
 }
+
 
 .services .service-item h3 {
   color: color-mix(in srgb, var(--heading-color), transparent 20%);

@@ -132,12 +132,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Areas\Manage\Data\" />
-      <Folder Include="Areas\Manage\Models\" />
-      <Folder Include="Pages\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <AdditionalFiles Include="Views\About\About.cshtml" />
     </ItemGroup>
 
