@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model Construction.Areas.Manage.ViewModels.AddServiceViewModel
 
 @{
   Layout = "_AdminLayout";
@@ -56,28 +56,35 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Add Service</h4>
-          <form class="forms-sample">
-            <div class="form-group">
-              <label for="exampleInputName1">Name</label>
-              <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+
+          @if (TempData["Success"] != null)
+          {
+            <div class="alert alert-success">@TempData["Success"]</div>
+          }
+
+          @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+          <form asp-area="Manage" asp-controller="Service" asp-action="AddService" method="post" enctype="multipart/form-data" class="forms-sample">
+          <div class="form-group">
+              <label asp-for="Name"></label>
+              <input asp-for="Name" class="form-control" placeholder="Name" />
+              <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-              <label>Upload logo</label>
-              <input type="file" name="img[]" class="file-upload-default">
-              <div class="input-group col-xs-12">
-                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Logo">
-                <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
-              </div>
+              <label asp-for="Description"></label>
+              <textarea asp-for="Description" class="form-control" rows="4" placeholder="Description"></textarea>
+              <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-              <label for="exampleTextarea1">Description</label>
-              <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+              <label>Upload Logo</label>
+              <input type="file" name="Logo" class="form-control-file" required />
             </div>
+
             <button type="submit" class="btn btn-primary me-2">Submit</button>
-            <button class="btn btn-light">Cancel</button>
-          </form>
+            <button type="reset" class="btn btn-light">Cancel</button>
+          </form> 
         </div>
       </div>
     </div>
