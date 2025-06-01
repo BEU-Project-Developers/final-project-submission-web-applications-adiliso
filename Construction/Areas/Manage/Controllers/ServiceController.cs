@@ -15,6 +15,11 @@ public class ServiceController : Controller
         _context = context;
         _webHostEnvironment = webHostEnvironment;
     }
+    
+    public IActionResult Create()
+    {
+        return View();
+    }
 
     [HttpPost]
     public async Task<IActionResult> AddService(AddServiceViewModel model)
@@ -47,9 +52,9 @@ public class ServiceController : Controller
             await _context.SaveChangesAsync();
 
             TempData["Success"] = "Service added successfully!";
-            return RedirectToAction("Forms", "Page");
+            return RedirectToAction("Create");
         }
 
-        return RedirectToAction("Forms", "Page");
+        return RedirectToAction("Create");
     }
 }
