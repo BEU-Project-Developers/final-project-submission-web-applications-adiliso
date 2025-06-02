@@ -1,4 +1,5 @@
-﻿@model dynamic
+﻿@using Construction.Models
+@model Construction.Models.Project
 
 @{
     ViewData["ActivePage"] = "ProjectDetails";
@@ -46,18 +47,12 @@
             </script>
             <div class="swiper-wrapper align-items-center">
 
-                <div class="swiper-slide">
-                    <img src="~/img/projects/remodeling-1.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="~/img/projects/remodeling-2.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="~/img/projects/remodeling-3.jpg" alt="">
-                </div>
-
+                @foreach (var photo in Model.Photos)
+                {
+                    <div class="swiper-slide">
+                        <img src="~/img/projects/@photo.PhotoPath" alt="">
+                    </div>
+                }
             </div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
@@ -68,18 +63,8 @@
 
             <div class="col-lg-8" data-aos="fade-up">
                 <div class="portfolio-description">
-                    <h2>This is an example of portfolio details</h2>
-                    <p>
-                        Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia
-                        quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim.
-                        Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla
-                        at esse enim cum deserunt eius.
-                    </p>
-                    <p>
-                        Amet consequatur qui dolore veniam voluptatem voluptatem sit. Non aspernatur atque natus ut cum
-                        nam et. Praesentium error dolores rerum minus sequi quia veritatis eum. Eos et doloribus
-                        doloremque nesciunt molestiae laboriosam.
-                    </p>
+                    <h2>@Model.Name</h2>
+                    <p>@Model.Description</p>
 
                     <div class="testimonial-item">
                         <p>
@@ -94,18 +79,6 @@
                         </div>
                     </div>
 
-                    <p>
-                        Impedit ipsum quae et aliquid doloribus et voluptatem quasi. Perspiciatis occaecati earum et
-                        magnam animi. Quibusdam non qui ea vitae suscipit vitae sunt. Repudiandae incidunt cumque minus
-                        deserunt assumenda tempore. Delectus voluptas necessitatibus est.
-                    </p>
-
-                    <p>
-                        Sunt voluptatum sapiente facilis quo odio aut ipsum repellat debitis. Molestiae et autem libero.
-                        Explicabo et quod necessitatibus similique quis dolor eum. Numquam eaque praesentium rem et qui
-                        nesciunt.
-                    </p>
-
                 </div>
             </div>
 
@@ -113,9 +86,9 @@
                 <div class="portfolio-info">
                     <h3>Project information</h3>
                     <ul>
-                        <li><strong>Category</strong> Web design</li>
-                        <li><strong>Client</strong> ASU Company</li>
-                        <li><strong>Project date</strong> 01 March 2020</li>
+                        <li><strong>Category</strong> @Model.Service.Name</li>
+                        <li><strong>Client</strong> @Model.Client</li>
+                        <li><strong>Project date</strong> @Model.ProjectDate</li>
                     </ul>
                 </div>
             </div>

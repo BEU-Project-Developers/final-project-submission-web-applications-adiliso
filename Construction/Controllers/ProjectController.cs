@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Construction.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Construction.Controllers;
@@ -30,9 +31,19 @@ public class ProjectController : Controller
         return View(projects);
     }
 
-    
-    public IActionResult ProjectDetails()
+
+    public async Task<IActionResult> ProjectDetails(long id)
     {
-        return View();
+        var query = _context.Projects
+            .Include(p => p.Service)
+            .Include(p => p.Photos)
+            .AsQueryable();
+        query = query.Where(p => p.Id == id);
+        var project = await query.FirstOrDefaultAsync();
+        if (project == null)
+        {
+            return NotFound();
+        }
+        return View(project);
     }
 }
