@@ -1,0 +1,44 @@
+﻿@model Construction.Models.Project
+
+<div class="container mt-4">
+    <h2>Project Details</h2>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title">@Model.Name</h4>
+            <p class="card-text">
+                <strong>Service:</strong> @Model.Service?.Name
+            </p>
+            <p class="card-text">
+                <strong>Client:</strong> @Model.Client
+            </p>
+            <p class="card-text">
+                <strong>Description:</strong> @Model.Description
+            </p>
+            <p class="card-text">
+                <strong>Project Date:</strong> @Model.ProjectDate
+            </p>
+        </div>
+    </div>
+
+    <h4>Photos</h4>
+    @if (Model.Photos != null && Model.Photos.Any())
+    {
+        <div class="row">
+            @foreach (var photo in Model.Photos)
+            {
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100">
+                        <img src="~/img/projects/@photo.PhotoPath" class="card-img-top" alt="Project">
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="text-muted">No photos available for this project.</p>
+    }
+
+    <a asp-action="Index" class="btn btn-secondary mt-3">Back to List</a>
+</div>

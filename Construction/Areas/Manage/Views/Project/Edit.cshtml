@@ -1,0 +1,67 @@
+﻿@model Construction.Areas.Manage.ViewModels.EditProjectViewModel
+
+@{
+    ViewBag.Title = "Edit Project";
+}
+
+<div class="container mt-4">
+    <h2>Edit Project</h2>
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input type="text" class="form-control" asp-for="Name" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea class="form-control" asp-for="Description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="ServiceId">Service</label>
+            <select asp-for="ServiceId" class="form-control" asp-items="ViewBag.ServiceList">
+                <option value="">Select a service</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Upload New Photos</label>
+            <input type="file" name="NewPhotos" class="form-control-file" multiple />
+        </div>
+
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+
+    <hr />
+
+    <h4>Existing Photos</h4>
+    @if (Model.ExistingPhotos != null && Model.ExistingPhotos.Any())
+    {
+        <div class="row">
+            @foreach (var photo in Model.ExistingPhotos)
+            {
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100">
+                        <img src="~/img/projects/@photo.PhotoPath" class="card-img-top" alt="Project">
+                        <div class="card-body text-center">
+                            <form asp-action="DeletePhoto" method="post">
+                                <input type="hidden" name="id" value="@photo.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure you want to delete this photo?');">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="text-muted">No photos available for this project.</p>
+    }
+</div>
