@@ -31,6 +31,10 @@ namespace Construction
                 .WithMany(pr => pr.Photos)
                 .HasForeignKey(ph => ph.ProjectId)
                 .OnDelete(DeleteBehavior.Cascade);
+            
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username)
+                .IsUnique();
 
             // Optional: Configure other constraints (like unique constraints, lengths etc.)
         }

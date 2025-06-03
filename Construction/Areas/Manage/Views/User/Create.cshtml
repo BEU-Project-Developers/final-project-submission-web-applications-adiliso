@@ -1,0 +1,64 @@
+﻿@model Construction.Areas.Manage.ViewModels.CreateUserViewModel
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Create User</h4>
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["Success"]</div>
+                    }
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <form asp-area="Manage" asp-controller="User" asp-action="Create" method="post"
+                          class="forms-sample">
+                        <div class="form-group">
+                            <label asp-for="Username"></label>
+                            <input asp-for="Username" class="form-control" placeholder="Username"/>
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Password"></label>
+                            <div class="input-group">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Password"
+                                       id="passwordInput"/>
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                    Show
+                                </button>
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <script>
+                            const togglePassword = document.getElementById('togglePassword');
+                            const passwordInput = document.getElementById('passwordInput');
+
+                            togglePassword.addEventListener('click', function () {
+                                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                                passwordInput.setAttribute('type', type);
+
+                                this.textContent = type === 'password' ? 'Show' : 'Hide';
+                            });
+                        </script>
+                        
+                        <div class="form-group">
+                            <label>Upload Profile Photo</label>
+                            <input type="file" name="ProfilePhoto" class="form-control-file" />
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="reset" class="btn btn-light">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

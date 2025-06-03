@@ -136,4 +136,8 @@
       <AdditionalFiles Include="Views\About\About.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\img\admins\" />
+    </ItemGroup>
+
 </Project>

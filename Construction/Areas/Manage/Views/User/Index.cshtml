@@ -1,0 +1,63 @@
+﻿@model List<Construction.Models.User>
+
+@{
+    Layout = "_AdminLayout"; // your admin layout
+}
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Admins List</h4>
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["Success"]</div>
+                    }
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Username</th>
+                            <th>Profile Photo</th> <!-- Added column -->
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.Id</td>
+                                <td>@user.Username</td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(user.ProfilePhoto))
+                                    {
+                                        <img src="~/img/admins/@user.ProfilePhoto" alt="Profile Photo" width="50" height="50"
+                                             style="object-fit: cover; border-radius: 50%;" />
+                                    }
+                                    else
+                                    {
+                                        <span>No photo</span>
+                                    }
+                                </td>
+                                <td>
+                                    <form asp-action="Delete" asp-controller="User" asp-route-id="@user.Id"
+                                          method="post"
+                                          onsubmit="return confirm('Are you sure you want to delete this?');"
+                                          style="display:inline;">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+
+                    <a asp-area="Manage" asp-controller="User" asp-action="Create" class="btn btn-success mt-3">Add New Admin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
