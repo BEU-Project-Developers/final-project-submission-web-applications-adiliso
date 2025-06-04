@@ -10,6 +10,7 @@ namespace Construction
         public DbSet<User> Users { get; set; }
         public DbSet<Photo> Photo { get; set; } 
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<TeamMember> TeamMembers { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

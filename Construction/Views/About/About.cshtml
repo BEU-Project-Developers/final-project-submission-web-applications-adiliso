@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model List<Construction.Models.TeamMember>
 
 @{
     ViewData["ActivePage"] = "About";
@@ -103,55 +103,26 @@
     </div>
     <div class="container">
         <div class="row gy-5">
-            <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
-                <div class="member-img">
-                    <img src="~/img/team/team-1.jpg" class="img-fluid" alt="">
-                    <div class="social">
-                        <a href="#"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
+            @foreach (var member in Model)
+            {
+                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member-img">
+                        <img src="~/img/team/@member.PhotoUrl" class="img-fluid" alt="@member.Name">
+                        <div class="social">
+                            <a href="@member.TwitterUrl"><i class="bi bi-twitter-x"></i></a>
+                            <a href="@member.FacebookUrl"><i class="bi bi-facebook"></i></a>
+                            <a href="@member.InstagramUrl"><i class="bi bi-instagram"></i></a>
+                            <a href="@member.LinkedinUrl"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info text-center">
+                        <h4>@member.Name</h4>
+                        <span>@member.Role</span>
+                        <p>@member.Description</p>
                     </div>
                 </div>
-                <div class="member-info text-center">
-                    <h4>Walter White</h4>
-                    <span>Chief Executive Officer</span>
-                    <p>With over 20 years of leadership experience, Walter drives our vision and inspires our team to achieve excellence.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="200">
-                <div class="member-img">
-                    <img src="~/img/team/team-2.jpg" class="img-fluid" alt="">
-                    <div class="social">
-                        <a href="#"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="member-info text-center">
-                    <h4>Sarah Johnson</h4>
-                    <span>Product Manager</span>
-                    <p>Sarah brings innovative ideas to life, ensuring that every product meets our high standards and our clients’ expectations.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="300">
-                <div class="member-img">
-                    <img src="~/img/team/team-3.jpg" class="img-fluid" alt="">
-                    <div class="social">
-                        <a href="#"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="member-info text-center">
-                    <h4>William Anderson</h4>
-                    <span>Chief Technology Officer</span>
-                    <p>With a passion for technology, William leads our tech team to deliver cutting-edge solutions that drive success.</p>
-                </div>
-            </div>
-            <!-- Repeat for other team members -->
+            }
         </div>
     </div>
 </section>
+
