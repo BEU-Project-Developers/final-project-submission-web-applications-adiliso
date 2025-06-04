@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model Construction.Models.Contact
 
 @{
     ViewData["ActivePage"] = "Contact";
@@ -61,6 +61,46 @@
                     width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div><!-- End Google Maps -->
+
+            <div class="col-lg-6">
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["Message"]
+                    </div>
+                }
+                <form asp-action="Contact" method="post" data-aos="fade-up" data-aos-delay="400">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row gy-4">
+                        <div class="col-md-6">
+                            <input asp-for="Name" class="form-control" placeholder="Your Name" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input asp-for="Email" class="form-control" placeholder="Your Email" required />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-12">
+                            <input asp-for="Subject" class="form-control" placeholder="Subject" required />
+                            <span asp-validation-for="Subject" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-12">
+                            <textarea asp-for="Message" class="form-control" rows="6" placeholder="Message" required></textarea>
+                            <span asp-validation-for="Message" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-12 text-center">
+                            <button type="submit">Send Message</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div><!-- End Contact Form -->
         </div>
 
     </div>

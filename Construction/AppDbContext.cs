@@ -8,7 +8,8 @@ namespace Construction
         public DbSet<Project> Projects { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Photo> Photo { get; set; }  // ✅ Add Photos DbSet
+        public DbSet<Photo> Photo { get; set; } 
+        public DbSet<Contact> Contacts { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
