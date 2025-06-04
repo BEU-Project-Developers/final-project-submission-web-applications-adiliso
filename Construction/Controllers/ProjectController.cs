@@ -1,4 +1,5 @@
-﻿using Construction.Models;
+﻿using Construction.Exceptions;
+using Construction.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,16 +35,23 @@ public class ProjectController : Controller
 
     public async Task<IActionResult> ProjectDetails(long id)
     {
-        var query = _context.Projects
-            .Include(p => p.Service)
-            .Include(p => p.Photos)
-            .AsQueryable();
-        query = query.Where(p => p.Id == id);
-        var project = await query.FirstOrDefaultAsync();
-        if (project == null)
+        try
+        {
+            var project = await _context.Projects
+                .Include(p => p.Service)
+                .Include(p => p.Photos)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (project == null)
+            {
+                throw new ProjectNotFoundException($"Project with ID {id} was not found.");
+            }
+
+            return View(project);
+        }
+        catch (ProjectNotFoundException)
         {
             return NotFound();
         }
-        return View(project);
     }
 }
